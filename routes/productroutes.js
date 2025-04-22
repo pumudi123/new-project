@@ -11,3 +11,4 @@ productrouter.delete("/:productId",deleteproduct)
 
 
 export default productrouter;
+

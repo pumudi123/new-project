@@ -50,3 +50,7 @@ const userschema = mongoose.Schema({
 const user = mongoose.model("users",userschema)
 
 export default user
+
+
+//fewrfr
+//wefwef
