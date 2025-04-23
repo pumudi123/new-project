@@ -42,7 +42,7 @@ export function createuser(req,res){
         res.json({ message: "user added successfully" });
     })
     .catch((err) => {
-        console.error(err);
+        console.log(err);
         res.json({ message: "Failed to add user" });
     });
 }

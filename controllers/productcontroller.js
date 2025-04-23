@@ -86,3 +86,88 @@ export function saveproducts(req,res){
     }
     }
 
+    export async function updateproduct(req,res){
+
+        if(!isadmin(req))
+        {
+            res.json({
+
+                message : "you cant update"
+            })
+
+            return
+        }
+
+        const productId = req.params.productId
+        const updatingdata = req.body
+
+        try{
+
+            await Product.updateOne(
+                {productId : productId},
+                updatingdata 
+            )
+
+            res.json({
+
+                MESSAGE : "PRODUCT UPDATED SUCCESFULLY"
+            })
+        }catch(err){
+
+            console.log(err)
+            res.json({
+
+                message : "internal server problem",
+                error : err
+            
+            })
+        }
+    }
+
+    export async function getproductbyid(req,res){
+
+        const productId = req.body.productId
+
+        try{
+
+            const product = await Product.findOne({
+                productId : productId
+            })
+
+            if (product == null){
+
+            
+                res.json({
+
+                    message : " product not found"
+                })
+                return
+            }
+
+            if (product.isavailable){
+                res.json(Product)
+            }else{
+                if(!isadmin(req)){
+                    res.json({
+
+                        message:"product is not found"
+
+                    }) 
+                    
+                    return
+                    
+                }else{
+
+                    res.json(Product)
+                }
+            }
+        }catch(err){
+            
+            res.json({
+
+                message : "internal error",
+                error: err
+            })
+        }
+       
+    }

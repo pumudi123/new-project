@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 import productrouter from './routes/productroutes.js';
 import userrouter from './routes/userrouters.js';
 import jwt, { decode } from "jsonwebtoken";
+import orderrouter from './routes/orderroute.js';
+import orderRouter from './routes/orderroute.js';
 
 
 
@@ -55,6 +57,7 @@ app.use("/products",productrouter)
 
 app.use("/users",userrouter)
 
+app.use("/orders",orderRouter)
 //mongodb+srv://pumudi:<db_password>@cluster0.1u1mygq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 

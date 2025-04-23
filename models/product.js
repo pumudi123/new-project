@@ -37,6 +37,9 @@ const productschema = mongoose.Schema(
       labelprice : {
 
         type : Number,
+
+
+        
         required : true
       },
 
