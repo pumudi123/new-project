@@ -2,11 +2,11 @@ console.log("program is running")
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import productrouter from './routes/productroutes.js';
-import userrouter from './routes/userrouters.js';
 import jwt, { decode } from "jsonwebtoken";
-import orderrouter from './routes/orderroute.js';
-import orderRouter from './routes/orderroute.js';
+import dotenv from 'dotenv';
+
+dotenv.config()
+
 
 
 
@@ -42,22 +42,19 @@ app.use((req,res,next)=>{
 
 
 
-mongoose.connect("mongodb+srv://pumudi:1234@cluster0.1u1mygq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{
     console.log("connected to the database")
 }
-).catch(()=>{
+).catch((e)=>{
     console.log("database failed")
+    console.log(e)
 })
 
 
 
 
-app.use("/products",productrouter)
 
-app.use("/users",userrouter)
-
-app.use("/orders",orderRouter)
 //mongodb+srv://pumudi:<db_password>@cluster0.1u1mygq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 
